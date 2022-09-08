@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState } from "react"
 import {store} from "./Redux/Store"
+import {handelAddActionObj,handelReduceActionObj} from "./Redux/action"
 function App() {
  
   const {count}= store.getState();
@@ -9,21 +10,22 @@ function App() {
   subscribe(()=>{
     setupdate((prev)=> prev+1)
   })
-  const handelAdd=()=>{
-    dispatch({type:"ADD", payload : 1})
-    console.log(store.getState())
-  }
-  const handelreduce=()=>{
-    dispatch({type:"REDUCE", payload : 1})
-    console.log(store.getState())
-  }
+  // const handelAdd=()=>{
+  //   dispatch({type:"ADD", payload : 1})
+  //   console.log(store.getState())
+  // }
+  // const handelreduce=()=>{
+  //   dispatch({type:"REDUCE", payload : 1})
+  //   console.log(store.getState())
+  // }
  
   return (
     <div className="App">
       <header><h1>REDUX DAY 1</h1></header>
+      <h5>MAX REACHED till 25</h5>
       <h3>Count: {count}</h3>
-      <button onClick={handelAdd}>add</button>
-      <button onClick={handelreduce}>reduce</button>
+      <button onClick={()=>dispatch(handelAddActionObj(1))}>add</button>
+      <button onClick={()=>dispatch(handelReduceActionObj(1))}>reduce</button>
     </div>
   );
 }
